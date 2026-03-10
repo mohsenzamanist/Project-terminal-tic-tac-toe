@@ -49,7 +49,23 @@ function checkColumn(board, player, columnNumber) {
     Otherwise, return false
 */
 function checkDiagonal(board, player) {
-    // It may be easier to use an if statement than a loop here
+  if (
+    board[0][0] === player &&
+    board[1][1] === player &&
+    board[2][2] === player
+  ) {
+    return true;
+  }
+
+  if (
+    board[0][2] === player &&
+    board[1][1] === player &&
+    board[2][0] === player
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 
