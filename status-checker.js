@@ -105,3 +105,4 @@ export function isGameOver(board) {
 
     return false;
 }
+export { checkRow, checkColumn, checkDiagonal };
