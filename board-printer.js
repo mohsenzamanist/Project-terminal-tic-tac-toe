@@ -16,6 +16,25 @@
     Test your function by calling it with an example tic-tac-toe board.
 */
 export function printBoard(board) {
+  if (board === null || board === undefined || board.length === 0)
+    throw new Error("Board is not valid!");
+  const validSigns = "XO_";
+  const divider = "\n=================\n";
+  const boardSketch = board.map((row) => {
+    if (row.length !== board.length) throw new Error("Board is not square!");
+    return (
+      "  " +
+      row
+        .map((cell) => {
+          if (!validSigns.includes(cell))
+            throw new Error("Invalid sign in Board array!");
+          return cell === "_" ? " " : cell;
+        })
+        .join("  |  ")
+    );
+  });
+
+  return divider + boardSketch.join(divider) + divider;
 }
 
 /*
@@ -24,4 +43,6 @@ export function printBoard(board) {
         - return false if there are still moves that can be made
 */
 export function checkIfNoMovesLeft(board) {
+  if (board.length === 0) return true;
+  return board.every((row) => !row.some((cell) => cell === "_"));
 }
