@@ -8,16 +8,29 @@
     If the move is not valid:
         - you can output 'Try again...'
         - and then return false
-    Testing your function by calling it with some values. An example board is:
-        let board = [
-            ['X', '_', '_'],
-            ['_', 'X', '_'],
-            ['O', 'O', 'X']
-        ];
-*/
+    Testing your function by calling it with some values. An example board is:*/
+let board = [
+  ["X", "_", "_"],
+  ["_", "X", "_"],
+  ["O", "O", "X"],
+];
+
 function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
+  const validNumbers = [1, 2, 3];
+  const [row, column] = move.split(",").map(Number);
+  if (!validNumbers.includes(row) || !validNumbers.includes(column)) {
+    console.log("Invalid input");
+    return false;
+  }
+  const boardRow = row - 1;
+  const boardColumn = column - 1;
+
+  if (board[boardRow][boardColumn] !== "_") {
+    console.log("Try again...");
+    return false;
+  }
+
+  return true;
 }
 
 /*
@@ -32,5 +45,9 @@ function validateMove(move, board) {
             - Return true
 */
 export function makeMove(board, move, player) {
-    return false;
+  if (!validateMove(move, board)) return false;
+  const [row, column] = move.split(",").map(Number);
+  board[row - 1][column - 1] = player;
+
+  return true;
 }
