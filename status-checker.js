@@ -18,6 +18,11 @@ import { checkIfNoMovesLeft } from './board-printer.js';
     Otherwise, return false
 */
 function checkRow(board, player, rowNumber) {
+    return (
+        board[rowNumber][0] === player &&
+        board[rowNumber][1] === player &&
+        board[rowNumber][2] === player
+    );
 }
 
 /*
@@ -29,6 +34,11 @@ function checkRow(board, player, rowNumber) {
     Otherwise, return false
 */
 function checkColumn(board, player, columnNumber) {
+    return (
+        board[0][columnNumber] === player &&
+        board[1][columnNumber] === player &&
+        board[2][columnNumber] === player
+    );
 }
 
 /*
@@ -39,7 +49,23 @@ function checkColumn(board, player, columnNumber) {
     Otherwise, return false
 */
 function checkDiagonal(board, player) {
-    // It may be easier to use an if statement than a loop here
+  if (
+    board[0][0] === player &&
+    board[1][1] === player &&
+    board[2][2] === player
+  ) {
+    return true;
+  }
+
+  if (
+    board[0][2] === player &&
+    board[1][1] === player &&
+    board[2][0] === player
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 
@@ -79,3 +105,4 @@ export function isGameOver(board) {
 
     return false;
 }
+export { checkRow, checkColumn, checkDiagonal };
